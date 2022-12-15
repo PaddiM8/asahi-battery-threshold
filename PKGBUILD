@@ -17,7 +17,7 @@ build() {
 package() {
   cd $pkgname
   install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
-  install -Dm664 "extra/$pkgname.service" "/etc/systemd/system/$pkgname.service"
+  install -Dm664 "extra/$pkgname.service" "$pkgdir/etc/systemd/system/$pkgname.service"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
