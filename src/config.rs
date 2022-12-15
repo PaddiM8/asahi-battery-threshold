@@ -1,6 +1,6 @@
 use color_eyre::eyre::Result;
 use serde_derive::{Deserialize, Serialize};
-use std::fs;
+use std::{fs, path::Path};
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -22,7 +22,22 @@ pub struct Config {
 }
 
 impl Config {
+    fn default() -> Self {
+        Config {
+            stop_charging_threshold: 85,
+            start_charging_threshold: 80,
+        }
+    }
+
     pub fn read_from_file(path: &str) -> Result<Self, ConfigError> {
+        if !Path::new(path).exists() {
+            let config = Config::default();
+            fs::write(path, toml::to_string_pretty(&config).unwrap())
+                .or(Err(ConfigError::NotAccessible))?;
+
+            return Ok(config);
+        }
+
         let config_content = fs::read_to_string(path).or(Err(ConfigError::NotAccessible))?;
         let config = toml::from_str::<Self>(&config_content).or(Err(ConfigError::NotAccessible))?;
 

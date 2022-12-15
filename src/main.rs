@@ -17,11 +17,14 @@ fn main() -> Result<()> {
     info!("Initializing");
 
     let args: Vec<String> = env::args().collect();
-    if args.len() != 2 {
-        return Err(eyre!("expected exactly 1 argument (config file path)"));
+    if args.len() > 2 {
+        return Err(eyre!("expected at most 1 argument (config file path)"));
     }
 
-    let config = Config::read_from_file(&args[1])?;
+    let config = Config::read_from_file(
+        args.get(1)
+            .unwrap_or(&String::from("/etc/asahi-battery-threshold.conf")),
+    )?;
     info!("Loaded config file");
     battery_handling::start_handler(config)?;
 
