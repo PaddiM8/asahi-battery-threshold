@@ -1,0 +1,8 @@
+[Unit]
+Description=asahi-battery-threshold
+
+[Service]
+ExecStart=/usr/bin/asahi-battery-threshold
+
+[Install]
+WantedBy=multi-user.target
