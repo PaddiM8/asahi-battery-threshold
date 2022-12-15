@@ -1,4 +1,4 @@
-# Asahi Battery Threshold
+# asahi-battery-threshold
 
 A small daemon that makes it possible to set a
 charging threshold for laptops running Asahi Linux.
@@ -15,7 +15,7 @@ makepkg -si
 It can then be started by running
 
 ```sh
-systemctl start asahi-battery-threshold`
+systemctl start asahi-battery-threshold
 ```
 or
 ```
