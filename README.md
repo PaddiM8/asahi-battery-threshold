@@ -3,6 +3,18 @@
 A small daemon that makes it possible to set a
 charging threshold for laptops running Asahi Linux.
 
+## How it works
+
+Since the kernel-side doesn't yet support setting an actual threshold,
+this daemon monitors battery usage and interacts with files
+in `/sys/class/power_supply/macsmc-battery/` to enable/disable
+charging. It can *not* change the charging behaviour during sleep.
+
+Preventing the battery from charging after a certain point is useful
+when you have it plugged in for extended periods of time, in order
+to put less strain on the battery. By default, this program will
+prevent charging after reaching 85% capacity.
+
 ## Installation
 
 On Arch-based systems, the program can be installed
