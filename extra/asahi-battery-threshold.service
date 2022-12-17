@@ -3,6 +3,7 @@ Description=asahi-battery-threshold
 
 [Service]
 ExecStart=/usr/bin/asahi-battery-threshold
+ExecStop=echo auto > /sys/class/power_supply/macsmc-battery/charge_behaviour
 
 [Install]
 WantedBy=multi-user.target
