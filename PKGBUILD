@@ -1,5 +1,5 @@
 # Maintainer: PaddiM8 <bakk@tuta.io>
-pkgname=asahi-battery-threshold
+pkgname=asahi-battery-threshold-git
 pkgver=0.0.1
 pkgrel=1
 pkgdesc="A small daemon that allows setting a charging threshold for laptops running Asahi Linux."
