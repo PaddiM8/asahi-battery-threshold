@@ -10,6 +10,11 @@ license=('MIT')
 makedepends=('cargo')
 source=('git+https://github.com/PaddiM8/asahi-battery-threshold')
 
+pkgver() {
+  cd "$_pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
 build() {
   cd $_pkgname
   cargo build --release
