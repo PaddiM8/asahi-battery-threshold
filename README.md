@@ -3,6 +3,10 @@
 A small daemon that makes it possible to set a
 charging threshold for laptops running Asahi Linux.
 
+## DEPRECATED
+
+This tool is finally no longer necessary! See [More information](https://github.com/PaddiM8/asahi-battery-threshold/issues/3)
+
 ## How it works
 
 Since the kernel-side doesn't yet support setting an actual threshold,
