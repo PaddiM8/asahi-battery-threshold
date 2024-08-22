@@ -120,8 +120,18 @@ impl BatteryState {
     }
 
     fn refresh_charge_behaviour(&mut self) -> Result<(), BatteryError> {
-        let behaviour_str =
+        let all =
             fs::read_to_string(CHARGE_BEHAVIOUR_FILE_PATH).or(Err(BatteryError::NotAccessible))?;
+
+        // select active and available charging behaviour
+        let behaviour_str = if let Some(index_open) = all.find('[') {
+            let index_close = all[index_open + 1..]
+                .find(']')
+                .ok_or(BatteryError::UnexpectedValue)?;
+            all[index_open + 1..index_open + 1 + index_close].to_string()
+        } else {
+            all
+        };
 
         self.charge_behaviour = match behaviour_str.trim() {
             "auto" => ChargeBehaviour::Auto,
